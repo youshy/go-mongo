@@ -38,10 +38,10 @@ func getDbNames(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/", getDbNames)
 	defer session.Close()
+	log.Printf("Listening on %v:%v\n", CONN_HOST, CONN_PORT)
 	err := http.ListenAndServe(CONN_HOST+":"+CONN_PORT, nil)
 	if err != nil {
 		log.Fatal("error starting http server :: ", err)
 		return
 	}
 }
-
